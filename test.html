@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <link rel="stylesheet" href="" />
+    <title>Weather Dashboard</title>
+  </head>
+
+  <body class="flex-column min-100-vh">
+    <main class="flex-row justify-space-between">
+      <div class="col-12 col-md-4">
+        <div class="card">
+          <h3 class="card-header text-uppercase">Search For a City:</h3>
+          <label class="form-label" for="cty">City</label>
+          <input
+            name="city"
+            id="city"
+            type="text"
+            autofocus=""
+            class="form-input"
+          />
+          <button class="btn" onclick="searchHistory()">Search</button>
+
+          <form id="user-form" class="card-body">
+            <label class="form-label" for="cty">City</label>
+            <input
+              name="city"
+              id="city"
+              type="text"
+              autofocus=""
+              class="form-input"
+            />
+            <button class="btn" onclick="searchHistory()">Search</button>
+          </form>
+        </div>
+      </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+      function searchHistory() {
+        console.log("here");
+        var city = $("#city").val();
+        console.log(city);
+      }
+    </script>
+  </body>
+</html>
