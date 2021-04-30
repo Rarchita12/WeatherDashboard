@@ -23,28 +23,17 @@
             class="form-input"
           />
           <button class="btn" onclick="searchHistory()">Search</button>
-
-          <form id="user-form" class="card-body">
-            <label class="form-label" for="cty">City</label>
-            <input
-              name="city"
-              id="city"
-              type="text"
-              autofocus=""
-              class="form-input"
-            />
-            <button class="btn" onclick="searchHistory()">Search</button>
-          </form>
         </div>
+      </div>
+
+      <div id="currentWeather" class="col-12 col-md-8">
+        <h2 id="cityName" class="subtitle">
+          <span id="repo-search-term"></span>
+        </h2>
+        <div id="repos-container" class="list-group"></div>
       </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script>
-      function searchHistory() {
-        console.log("here");
-        var city = $("#city").val();
-        console.log(city);
-      }
-    </script>
+    <script src="./assets/js/test.js"></script>
   </body>
 </html>
