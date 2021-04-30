@@ -43,13 +43,69 @@
         </div>
       </div>
 
-      <div id="currentWeather" class="col-12 col-md-8">
-        <h2 id="cityName" class="subtitle">
-          <span id="repo-search-term"></span>
-        </h2>
-        <div id="repos-container" class="list-group"></div>
+      <div id="cityWeather" class="col-12 col-md-8">
+        <div id="currentWeather">
+          <h2 id="cityName" class="subtitle">
+            <span id="repo-search-term"></span>
+          </h2>
+          <div id="repos-container" class="list-group"></div>
+        </div>
+        <br />
+        <div id="fivedayforecast" style="display: none" >
+          <h2 id="fivedayTitle">5-day Forecast: </h2>
+            <div class="row">
+              <div class="column">
+                <div id="card1" class="cardWeather">
+                  <h3 style="color:white" id="card1Title"></h3>
+                  <img id="icon1" />
+                  <p id="temp1">Temp:</p>
+                  <p id="wind1">Wind:</p>
+                  <p id="humidity1">Humidity:</p>
+                </div>
+              </div>
 
-        <div><h3>HELLO</h3></div>
+              <div class="column">
+                <div id="card2" class="cardWeather">
+                  <h3 style="color:white" id="card2Title"></h3>
+                  <img id="icon2" />
+                  <p id="temp2">Temp:</p>
+                  <p id="wind2">Wind:</p>
+                  <p id="humidity2">Humidity:</p>
+                </div>
+              </div>
+
+              <div class="column">
+                <div id="card3" class="cardWeather">
+                  <h3 style="color:white" id="card3Title"></h3>
+                  <img id="icon3" />
+                  <p id="temp3">Temp:</p>
+                  <p id="wind3">Wind:</p>
+                  <p id="humidity3">Humidity:</p>
+                </div>
+              </div>
+
+              <div class="column">
+                <div id="card4" class="cardWeather">
+                  <h3 style="color:white" id="card4Title"></h3>
+                  <img id="icon4" />
+                  <p id="temp4">Temp:</p>
+                  <p id="wind4">Wind:</p>
+                  <p id="humidity4">Humidity:</p>
+                </div>
+              </div>
+
+              <div class="column">
+                <div  id="card5" class="cardWeather">
+                  <h3 style="color:white" id="card5Title"></h3>
+                  <img id="icon5" />
+                  <p id="temp5">Temp:</p>
+                  <p id="wind5">Wind:</p>
+                  <p id="humidity5">Humidity:</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
