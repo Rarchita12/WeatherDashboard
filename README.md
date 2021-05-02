@@ -15,7 +15,7 @@ A website that offers the allows the user to search for a city and displays the 
 
 ## Website
 
-https://rarchita12.github.io/Quiz/
+https://rarchita12.github.io/WeatherDashboard/
 
 ![](assets/images/screenshot1.JPG)
 
