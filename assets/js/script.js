@@ -1,5 +1,5 @@
 var count = 0;
-var cityButtonsEl = document.querySelector("#city-buttons");
+var cityButtonsEl = document.querySelector(".cities");
 var currentWeatherEl = document.querySelector("#currentWeather");
 var city;
 var timeZone;
@@ -11,6 +11,7 @@ function displaySearches(){
     
         var cityHistory = document.createElement("button");
         cityHistory.classList.add("btn");
+        cityHistory.classList.add("cities");
         cityHistory.innerHTML = localStorage.getItem(count) + "<br/>";
         cityHistory.setAttribute("data-pastCity", "" +  localStorage.getItem(count));
         $('#city-buttons').append(cityHistory);
@@ -60,8 +61,10 @@ color = "severe";
   return color;
 }
 
-function currentWeather(){
-    var city = document.getElementById("city").value;
+
+
+function currentWeather(city){
+  var city = document.getElementById("city").value;
     console.log(city);
   
     fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=86e5b69988c83a74ef952be5ac176e35'
@@ -205,16 +208,16 @@ function clear(){
 }
 
 
-
-function test(event){
+/*
+function test(){
   document.getElementById("currentWeather").innerHTML = "";
-    
+  // var city1=  document.querySelector(".cities");
   clear();
-  var pastCty= event.target.getAttribute("data-pastCity");
+  var pastCty= this.dataset.data-pastCity;
   console.log(pastCty);
   if(pastCty){
     //getFeaturedRepos(language);
-    currentWeather();
+    currentWeather(pastCty);
     fiveday();
     if(document.getElementById("fivedayforecast").style.display = "none"){
         
@@ -230,7 +233,7 @@ function test(event){
    // displaySearches();
     //count++;
 };
-
+*/
 
 
 function searchHistory() {
@@ -253,7 +256,11 @@ function searchHistory() {
   }
 
   
-  cityButtonsEl.addEventListener("click", test);
+  document.getElementsByClassName("cities").addEventListener("click", function(){
+    
+    console.log(this.dataset.data-pastCity);
+    
+  });
 /*
 var searchTerm = 'Dallas';
 
