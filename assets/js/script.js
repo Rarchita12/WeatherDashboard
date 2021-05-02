@@ -1,12 +1,11 @@
 var count = 0;
-//var cityButtonsEl = document.querySelector(".cities");
 var currentWeatherEl = document.querySelector("#currentWeather");
 var city;
 var timeZone;
 var cdate;
 
 
-
+//Display Past Searches
 function displaySearches(){
     
         var cityHistory = document.createElement("button");
@@ -14,35 +13,25 @@ function displaySearches(){
         
         cityHistory.innerHTML = localStorage.getItem(count) + "<br/>";
         cityHistory.setAttribute("data-pastcity", "" +  localStorage.getItem(count));
-       // cityHistory.setAttribute("id","idtest" );
+     
         $('#city-buttons').append(cityHistory);
         
 
 }
 
-
+//In case city is in a different time zone
 function date(timeZone){
-    /*var date = moment.unix(currentDate).format('MM/DD/YYYY');
-    console.log("this is the date: " + date);*/
-
     cdate = moment().tz(timeZone).format('MM/DD/YYYY');
-    /*var curdates = document.createElement("span");
-    curdates.innerHTML = " " + cdate;
-    //console.log("cdate is " + cdate);
-
-    document.getElementById("place").appendChild(curdates);
-    
-    var ndate = moment(cdate, 'MM/DD/YYYY').add(1, 'days').format('MM/DD/YYYY');
-    console.log("ndate is " + ndate);*/
     return cdate;
 }
 
+//5-day forecast dates
 function futuredates(dayNum, cdate){
   
   var ndate = moment(cdate, 'MM/DD/YYYY').add(dayNum, 'days').format('MM/DD/YYYY');
   return ndate; 
 }
-
+//convert Kelvin to Fahrenheit
 function toFahrenheit(OGtemp){
  return ((OGtemp - 273.15) * (9/5) + 32).toFixed(2);
 }
@@ -63,10 +52,10 @@ color = "severe";
 }
 
 
-
+//display currentWeather
 function currentWeather(){
   var city = document.getElementById("city").value;
-    console.log(city);
+    
   
     fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=86e5b69988c83a74ef952be5ac176e35'
   )
@@ -75,7 +64,7 @@ function currentWeather(){
   return response.json();
 })
 .then(function(response) {
-    console.log(response);
+    
    var longitude =  response.coord.lon;
    var latitude = response.coord.lat;
   
@@ -87,7 +76,7 @@ function currentWeather(){
       })
       .then(function(oneresponse) {
  timeZone = oneresponse.timezone;
- console.log(oneresponse);
+ 
  var iconcode = oneresponse.current.weather[0].icon;
  var OGtemp = oneresponse.current.temp; 
  var realtemp = toFahrenheit(OGtemp);
@@ -170,19 +159,17 @@ document.getElementById("fivedayforecast").classList.add('icons');
 }
 
 
-
+//Past Searches Current Weather
 function currentWeatherPast(city){
   
-    console.log(city);
-  
-    fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=86e5b69988c83a74ef952be5ac176e35'
+   fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=86e5b69988c83a74ef952be5ac176e35'
   )
 
 .then(function(response) {
   return response.json();
 })
 .then(function(response) {
-    console.log(response);
+    
    var longitude =  response.coord.lon;
    var latitude = response.coord.lat;
   
@@ -194,7 +181,7 @@ function currentWeatherPast(city){
       })
       .then(function(oneresponse) {
  timeZone = oneresponse.timezone;
- console.log(oneresponse);
+
  var iconcode = oneresponse.current.weather[0].icon;
  var OGtemp = oneresponse.current.temp; 
  var realtemp = toFahrenheit(OGtemp);
@@ -252,7 +239,7 @@ document.getElementById("humidity5").innerHTML += "Humidity: " +humidity5 + " %"
 var place = document.createElement("h2");
 var weatherInfo = document.createElement("p");
 var uvi = document.createElement("p");
-//place.className = "icons";
+
 place.setAttribute = ("id", "place");
 var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
 
@@ -276,25 +263,7 @@ document.getElementById("fivedayforecast").classList.add('icons');
 
 }
 
-
-/*
-function fiveday(cdate, icon1, icon2, icon3, icon4, icon5){
-  //document.querySelectorAll("#card1Title, #card2Title, #card3Title, #card4Title, #card5Title").classList.add('cardWeather');
-  //document.getElementById("currentWeather").classList.add('cardWeather');
-  document.getElementById("card1Title").innerHTML = futuredates(1, cdate);
-  document.getElementById("icon1").src = icon1;
-  //document.getElementById("temp1").innerHTML += " " + temp1;
-  document.getElementById("card2Title").innerHTML = futuredates(2, cdate);
-  document.getElementById("icon2").src = "" + icon2;
-  document.getElementById("card3Title").innerHTML = futuredates(3, cdate);
-  document.getElementById("icon3").src = "" + icon3;
-  document.getElementById("card4Title").innerHTML = futuredates(4, cdate);
-  document.getElementById("icon4").src = "" + icon4;
-  document.getElementById("card5Title").innerHTML = futuredates(5, cdate);
-  document.getElementById("icon5").src = "" + icon5;
-}
-*/
-
+//clear old 5-day forecast content
 function clear(){
   document.getElementById("temp1").innerHTML = "";
   document.getElementById("wind1").innerHTML = "";
@@ -320,7 +289,7 @@ function clear(){
 
 
 
-
+//When user Clicks Search
 function searchHistory() {
     document.getElementById("currentWeather").innerHTML = "";
     
@@ -329,7 +298,7 @@ function searchHistory() {
     
     localStorage.setItem(count, city);
     currentWeather();
-    //fiveday();
+    
     if(document.getElementById("fivedayforecast").style.display = "none"){
         
     
@@ -341,6 +310,7 @@ function searchHistory() {
   }
 
 
+  //Persist data on refresh
   window.onload = function() {
 
     
@@ -364,22 +334,19 @@ function searchHistory() {
   }
 
 
-
-
-
-
+//Event Listener for Search History buttons
   document.getElementById("city-buttons").addEventListener('click',function(e){
     if(e.target && event.target.tagName=== 'BUTTON')
     {
           
-          console.log("This is it: " + event.target.getAttribute("data-pastcity"));
+         
           var pastCity= event.target.getAttribute("data-pastcity")
           document.getElementById("currentWeather").innerHTML = "";
     
   clear();
 
           currentWeatherPast(pastCity);
-         // fiveday();
+         
           if(document.getElementById("fivedayforecast").style.display = "none"){
               
           
